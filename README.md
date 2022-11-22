@@ -1,0 +1,2 @@
+# ratbot
+Discord music bot
