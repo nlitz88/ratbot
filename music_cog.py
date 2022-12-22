@@ -15,13 +15,16 @@ class music_cog(commands.Cog):
         self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnected_stream 1 - reconnect_delay_max 5', 'options': '-vn'}
 
         self.vc = None
-    def search_yt(self, item):
+
+    def search_yt(self, item): 
+        """Multiline comment about seraching youtube"""
         with YoutubeDL(self.YDL_OPTIONS) as ydl:
             try:
                 info = ydl.extract_info("ytsearch:%s" % item, download=False)['entries'][0]
             except Exception:
                 return False
         return {'source': info['formats'[0]['url']], 'title': info['title']}
+
     def play_next(self):
         if len(self.music_queue) > 0:
             self.is_playing = True
@@ -33,6 +36,7 @@ class music_cog(commands.Cog):
             self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
         else:
             self.is_playing = False
+
     async def play_music(self, ctx):
         if len(self.music_queue) > 0:
             self.is_playing = True
@@ -52,6 +56,7 @@ class music_cog(commands.Cog):
             self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
         else:
             self.is_playing = False
+
     @commands.command(name = "play", aliases = ["p", "playing"] help = "play the selected song from youtube")
     async def play (self, ctx, *args):
         query = " ".join(args)
@@ -79,6 +84,13 @@ class music_cog(commands.Cog):
             self.is_paused = True
             self.vc.pause()
         elif self.is_paused:
+            self.vc.resume()
+
+    @commands.command(name = "resume", aliases=["r"] help = "Resumes playin gthe current song")
+    async def resume(self, ctx, *args):
+        if self.is_paused:
+            self.isplaying = True
+            self.is_paused = False
             self.vc.resume()
 
     
