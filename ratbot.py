@@ -11,7 +11,7 @@ ratbot = commands.Bot(intents=discord.Intents.default(), command_prefix="*")
 #removes default help commands
 ratbot.remove_command("help")
 # Run ratbot with the token provided as an environment variable.
-ratbot.run(os.getenv("TOKEN"))
+
 #
 ratbot.add_cog(music_cog(ratbot))
 ratbot.add_cog(help_cog(ratbot))
