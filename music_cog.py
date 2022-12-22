@@ -66,10 +66,12 @@ class music_cog(commands.Cog):
             await ctx.send("Connect to a voice channel!")
         elif self.is_paused:
             self.vc.resume()
+            self.is_paused = False
+            self.is_playing = True
         else:
             song = self.search_yt(query)
             if type(song) == type(True):
-                await ctx.send("COuld not download the song. Incorrect format, try a different keywrod")
+                await ctx.send("Could not download the song. Incorrect format, try a different keywrod")
             else:
                 await ctx.send("Song added to the queue")
                 self.music_queue.append([song, voice_channel])
@@ -80,16 +82,19 @@ class music_cog(commands.Cog):
     @commands.command(name = "pause", help = "Pauses the current song being played")
     async def pause(self, ctx, *args):
         if self.is_playing:
+            self.vc.pause()
             self.is_playing = False
             self.is_paused = True
-            self.vc.pause()
+            
         elif self.is_paused:
             self.vc.resume()
+            self.is_paused = False
+            self.is_playing = True
 
     @commands.command(name = "resume", aliases=["r"], help = "Resumes playin gthe current song")
     async def resume(self, ctx, *args):
         if self.is_paused:
-            self.isplaying = True
+            self.is_playing = True
             self.is_paused = False
             self.vc.resume()
 
