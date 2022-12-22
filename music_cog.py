@@ -93,6 +93,40 @@ class music_cog(commands.Cog):
             self.is_paused = False
             self.vc.resume()
 
+    @commands.command(anme = "skip", aliases = ["s"], help = "Skips the currently plaed song")
+    async def skip(self, ctx, *args):
+        if self.vc != None and self.vc:
+            self.vc.stop()
+            await self.play_music(ctx)
+    
+    @commands.command(name = "queue", aliases=["q"], help = "Displays all the songs currently in the queue")
+    async def queue(self, ctx):
+        retval = ""
+
+        for i in range(0, len(self.music_queue)):
+            if i > 4: break
+            retval += self.music_queue[i][0]['title'] + '\n'
+        
+        if retval != "":
+            await ctx.send(retval)
+        else:
+            await ctx.send("No music in the queue.")
+
+    @commands.command(name = "clear", aliases = ["c", "bine"], help="stops the current song and clearas the queue")
+    async def clear(self, ctx, *args):
+        if self.vc != None and self.is_playing:
+            self.vc.stop()
+        self.music_queue - []
+        await ctx.send("Music queue cleared")
+    
+    @commands.command(name = "leave", aliases = ["disconnect", "1", "d"], help = "Kick the bot from the voice channel")
+    async def leave(self, ctx):
+        self.is_playing = False
+        self.is_paused = False
+        await self.vc.disconnect()
+
+
+
     
 
 
