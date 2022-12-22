@@ -14,7 +14,7 @@ class music_cog(commands.Cog):
         self.YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
         self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
-        self.vc = None
+        self.vc: discord.VoiceChannel = None
 
     def search_yt(self, item): 
         """Multiline comment about seraching youtube"""
@@ -37,7 +37,7 @@ class music_cog(commands.Cog):
         else:
             self.is_playing = False
 
-    async def play_music(self, ctx):
+    async def play_music(self, ctx: commands.Context):
         if len(self.music_queue) > 0:
             self.is_playing = True
             m_url = self.music_queue[0][0]['source']
@@ -58,10 +58,10 @@ class music_cog(commands.Cog):
             self.is_playing = False
 
     @commands.command(name = "play", aliases = ["p", "playing"], help = "play the selected song from youtube")
-    async def play (self, ctx, *args):
+    async def play (self, ctx: commands.Context, *args):
         query = " ".join(args)
 
-        voice_channel = ctx.author.voice.channel
+        voice_channel: discord.VoiceChannel = ctx.author.voice.channel
         if voice_channel is None:
             await ctx.send("Connect to a voice channel!")
         elif self.is_paused:
