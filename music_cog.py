@@ -12,7 +12,7 @@ class music_cog(commands.Cog):
 
         self.music_queue = []
         self.YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
-        self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnected_stream 1 - reconnect_delay_max 5', 'options': '-vn'}
+        self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_stream 1 - reconnect_delay_max 5', 'options': '-vn'}
 
         self.vc = None
 
@@ -23,7 +23,7 @@ class music_cog(commands.Cog):
                 info = ydl.extract_info("ytsearch:%s" % item, download=False)['entries'][0]
             except Exception:
                 return False
-        return {'source': info['formats'[0]['url']], 'title': info['title']}
+        return {'source': info['formats'][0]['url'], 'title': info['title']}
 
     def play_next(self):
         if len(self.music_queue) > 0:
@@ -57,7 +57,7 @@ class music_cog(commands.Cog):
         else:
             self.is_playing = False
 
-    @commands.command(name = "play", aliases = ["p", "playing"] help = "play the selected song from youtube")
+    @commands.command(name = "play", aliases = ["p", "playing"], help = "play the selected song from youtube")
     async def play (self, ctx, *args):
         query = " ".join(args)
 
@@ -86,7 +86,7 @@ class music_cog(commands.Cog):
         elif self.is_paused:
             self.vc.resume()
 
-    @commands.command(name = "resume", aliases=["r"] help = "Resumes playin gthe current song")
+    @commands.command(name = "resume", aliases=["r"], help = "Resumes playin gthe current song")
     async def resume(self, ctx, *args):
         if self.is_paused:
             self.isplaying = True
