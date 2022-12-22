@@ -8,11 +8,11 @@ class music_cog(commands.Cog):
         self.bot = bot
 
         self.is_playing = False
-        self.is_puased = False
+        self.is_paused = False
 
         self.music_queue = []
         self.YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
-        self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_stream 1 - reconnect_delay_max 5', 'options': '-vn'}
+        self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
         self.vc = None
 
@@ -116,7 +116,7 @@ class music_cog(commands.Cog):
     async def clear(self, ctx, *args):
         if self.vc != None and self.is_playing:
             self.vc.stop()
-        self.music_queue - []
+        self.music_queue = []
         await ctx.send("Music queue cleared")
     
     @commands.command(name = "leave", aliases = ["disconnect", "1", "d"], help = "Kick the bot from the voice channel")
