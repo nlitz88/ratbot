@@ -1,6 +1,8 @@
 # ratbot
 Rats! Ratbot is a simple, self-hosted Discord music bot.
 
+![Rat](./ratbot.png)
+
 ## Self Hosting Ratbot
 There are two main "pieces" to every Discord bot:
 1. The "bot" you create on the Discord Developer Portal
