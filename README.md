@@ -15,8 +15,9 @@ user.
 Therefore, to use ratbot, you essentially have to (1) create your own "bot user" (if you will) on the Discord Developer
 Portal, and then (2) run the bot code from this repository using your new "bot user's" token. It's like running
 your own version of the bot, basically!
+<br></br>
 
-## 1. Creating a new bot on the Discord Developer Portal.
+## 1. Creating a new bot on the Discord Developer Portal
 #### Starting with a YouTube Tutorial
 I'll be honest: the best way to do this is to just follow along with the first part of [Computershort's
 tutorial](https://www.youtube.com/watch?v=dRHUW_KnHLs).
@@ -48,9 +49,9 @@ server, like users sending messages, joining a channel, etc.
 
  > What even are "intents?"
 
- Give [discordpy's page on these](https://discordpy.readthedocs.io/en/stable/intents.html) a read over, they
- offer a good explanation. In short, an intent is basically a group of different Discord events that you
+ Discordpy explains this really well [in there documentation](https://discordpy.readthedocs.io/en/stable/intents.html). In short, an intent is basically a group of different Discord events that you
  can have your bot subscribe/listen to.
+ <br></br>
 
 ## 2. Running the ratbot container with your unique bot token
 Now that you have a token for your unique "bot user," you can spin up the ratbot code to power your unique bot!
