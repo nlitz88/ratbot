@@ -14,12 +14,12 @@ Therefore, to use ratbot, you essentially have to (1) create your own "bot user"
 Portal, and then (2) run the bot code from this repository using your new "bot user's" token. It's like running
 your own version of the bot, basically!
 
-### 1. Creating a new bot on the Discord Developer Portal.
+## 1. Creating a new bot on the Discord Developer Portal.
 #### Starting with a YouTube Tutorial
 I'll be honest: the best way to do this is to just follow along with the first part of [Computershort's
 tutorial](https://www.youtube.com/watch?v=dRHUW_KnHLs).
 
-#### Getting Your Bot's Token
+### Getting Your Bot's Token
 The most important part is **copying and storing
 the token** of the bot you create. This is what you will specify when you go to spin up the bot as a container
 later.
@@ -50,41 +50,38 @@ server, like users sending messages, joining a channel, etc.
  offer a good explanation. In short, an intent is basically a group of different Discord events that you
  can have your bot subscribe/listen to.
 
-### 2. Running the ratbot container with your unique bot token
+## 2. Running the ratbot container with your unique bot token
 Now that you have a token for your unique "bot user," you can spin up the ratbot code to power your unique bot!
 Ratbot is currently run as a Docker Container. If you know what you're doing, you're more than welcome to execute
 ratbot.py with python. For the average user, it'll probably be easier to just run everything as a container all
 packaged up so you don't have to worry about any dependency or compatibility issues.
 
+### Running the ratbot container using the ratbot image
 To spin up the ratbot container using the latest image from Docker Hub, run the following command:
 
     docker run -e TOKEN=<bot_token_here> ratbot -d
 
+### Environment Variables
+Environment variables are used to control the bot's behavior. Below is a table of all possible environment
+variables. **TOKEN is the only required environment variable.**
 
-#### Building ratbot container from source
-To build the ratbot image from source, run the following command in your local copy of the repository to create
+<table style="border-collapse:collapse;border-spacing:0" class="tg"><tbody><tr><td style="border-color:#333333;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:medium;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">Environment Variable</td><td style="border-color:#333333;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:medium;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">Description</td></tr><tr><td style="border-color:#333333;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">TOKEN</td><td style="border-color:#333333;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:top;word-break:normal">Your bot's unique token you got from your Discord Developer Portal</td></tr></tbody></table>
 
+### Building ratbot image from source
+To build the ratbot image from source, run the following command in your local copy of the repository to build the
+ratbot image.
 
+    docker build --tag ratbot .
 
-# Running the 
-At its core, ratbot is run in a Docker container. You can download the Docker Container from Docker Hub or build it
-from source using the instructions below.
+<!-- # ratbot development environment
+To start working on ratbot, use the following steps to set up a development environment.
 
-## ratbot development environment
+1. Install python
+2. Install all python requirements
+   
+        pip3 install -r requirements.txt
 
-
-## Running ratbot
-ratbot is currently intended to be run within a Docker container to make maintaining and running it as simple as possible.
-
-### Docker CLI Example Command
-
-### Docker Compose Example File
-
-
-## Environment Variables
-(Look at some other repo that has good documentation on running a docker container with environment variables,
-maybe like [itzg's minecraft server container](https://github.com/itzg/docker-minecraft-server).
-
+3. Install Docker -->
 
 # Acknolwedgements
 The core of ratbot originated from [this](https://www.youtube.com/watch?v=dRHUW_KnHLs) YouTube tutorial by
