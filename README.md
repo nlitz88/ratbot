@@ -17,7 +17,7 @@ your own version of the bot, basically!
 ### 1. Creating a new bot on the Discord Developer Portal.
 #### Starting with a YouTube Tutorial
 I'll be honest: the best way to do this is to just follow along with the first part of [Computershort's
-tutorial](https://www.youtube.com/channel/UC2clDLZK1wXYB5be4b240Hg). 
+tutorial](https://www.youtube.com/watch?v=dRHUW_KnHLs).
 
 #### Getting Your Bot's Token
 The most important part is **copying and storing
@@ -58,7 +58,7 @@ packaged up so you don't have to worry about any dependency or compatibility iss
 
 To spin up the ratbot container using the latest image from Docker Hub, run the following command:
 
-    asdf
+    docker run -e TOKEN=<bot_token_here> ratbot -d
 
 
 #### Building ratbot container from source
