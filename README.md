@@ -62,7 +62,7 @@ packaged up so you don't have to worry about any dependency or compatibility iss
 ### Running the ratbot container using the ratbot image
 To spin up the ratbot container using the latest image from Docker Hub, run the following command:
 
-    docker run -e TOKEN=<bot_token_here> ratbot -d
+    docker run --rm -e TOKEN=<your bot's unique token from your Discord Developer Portal> --name=ratbot -d ratbot
 
 ### Environment Variables
 Environment variables are used to control the bot's behavior. Below is a table of all possible environment
