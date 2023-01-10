@@ -36,7 +36,7 @@ class music_cog(commands.Cog):
             
             self.music_queue.pop(0)
 
-            self.voice_client.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
+            self.voice_client.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS))#, after=lambda e: self.play_next())
         else:
             self.is_playing = False
 
@@ -55,8 +55,10 @@ class music_cog(commands.Cog):
                 await self.voice_client.move_to(self.music_queue[0][1])
             
             self.music_queue.pop(0)
+            #issue: whenever we skip, the voice client calls plaay then immdiatly calls play next causing the already playing error.
+            print(f"[PLAY_MUSIC] Another check in play_music function: is the voiceClient player stopped? {not self.voice_client.is_playing()}")
 
-            self.voice_client.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
+            self.voice_client.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS))#, after=lambda e: self.play_next())
         else:
             self.is_playing = False
 
@@ -123,6 +125,7 @@ class music_cog(commands.Cog):
     async def skip(self, context, *args):
         if self.voice_client != None and self.voice_client:
             self.voice_client.stop()
+            print(f"[SKIP] Voice client Player Stopped? {not self.voice_client.is_playing()}")
             await self.play_music(context)
     
     @commands.command(name = "queue", aliases=["q"], help = "Displays all the songs currently in the queue")
