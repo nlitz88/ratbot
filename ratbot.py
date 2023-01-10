@@ -7,7 +7,7 @@ import os
 from help_cog import help_cog
 from music_cog import music_cog
 # Create the bot instance and configure it.
-ratbot = commands.Bot(intents=discord.Intents.all(), command_prefix="*")
+ratbot = commands.Bot(intents=discord.Intents.all(), command_prefix="?")
 #removes default help commands
 ratbot.remove_command("help")
 
